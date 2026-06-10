@@ -19,7 +19,7 @@ spec:
         # La imagen se reemplazará dinámicamente en el pipeline de GitHub Actions
         image: 179740774823.dkr.ecr.us-east-1.amazonaws.com/rent-car:${IMAGE_TAG}
         ports:
-        - containerPort: 
+        - containerPort: 8080
         
 ---
 apiVersion: v1
