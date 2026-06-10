@@ -20,13 +20,14 @@ WORKDIR /app
 
 # 3. Seguridad: Creamos un usuario de sistema para no ejecutar como root
 RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-
 # 4. Copiamos el artefacto construido desde la etapa anterior
 COPY --from=build /app/target/*.jar app.jar
-COPY ./logs .
+COPY --chown=spring:spring ./logs /app/logs 
+
+USER spring:spring
+
 # 5. Exponemos el puerto estándar de Spring Boot
-EXPOSE 8080
+EXPOSE 8080 
 
 # 6. Comando de inicio con optimización de memoria para contenedores
 ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
