@@ -41,7 +41,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: rent-car
+          container-name: web-app
           image: ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest
 
       - name: Desplegar nueva Task Definition en el Servicio
